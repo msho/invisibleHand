@@ -1,8 +1,9 @@
 package main
 
 import (
-	"InvisibleHand/config"
 	"fmt"
+	"invisiblehand/config"
+	"invisiblehand/models/world"
 	"net/http"
 	"os"
 
@@ -11,10 +12,14 @@ import (
 
 type server struct {
 	router *mux.Router
+
+	gameMap world.Map
 }
 
 func (s *server) Start() {
 	s.routes()
+
+	s.gameMap = world.MakeMap(10, 10)
 
 	http.ListenAndServe(getPort(), s.router)
 }
