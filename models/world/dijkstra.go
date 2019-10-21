@@ -51,6 +51,11 @@ func (d *dijk) findPath() []*Node {
 		}
 	} // while unvisted len > 0
 
+	return d.getFoundPath()
+
+}
+
+func (d *dijk) getFoundPath() []*Node {
 	foundPath := make([]*Node, 1, 5)
 	foundPath[0] = d.node2
 	curr := d.prev[d.node2]
@@ -62,7 +67,6 @@ func (d *dijk) findPath() []*Node {
 	}
 
 	return foundPath
-
 }
 
 func prependNode(path []*Node, node *Node) []*Node {
@@ -72,7 +76,7 @@ func prependNode(path []*Node, node *Node) []*Node {
 	return path
 }
 
-func MakeDijk(mapNodes []*Node, node1 *Node, node2 *Node) dijk {
+func makeDijk(mapNodes []*Node, node1 *Node, node2 *Node) dijk {
 	path := dijk{
 		mapNodes: mapNodes,
 		node1:    node1,
@@ -85,7 +89,7 @@ func MakeDijk(mapNodes []*Node, node1 *Node, node2 *Node) dijk {
 }
 
 func findPath(mapNodes []*Node, node1 *Node, node2 *Node) []*Node {
-	d := MakeDijk(mapNodes, node1, node2)
+	d := makeDijk(mapNodes, node1, node2)
 	return d.findPath()
 
 }
