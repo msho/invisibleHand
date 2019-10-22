@@ -42,7 +42,7 @@ func (d *dijk) findPath() []*Node {
 			break
 		}
 
-		for _, neighbor := range u.GetNeighbors().Get() {
+		for _, neighbor := range u.GetNeighborsNodes() {
 			alt := d.dist[u] + 1 //todo: add path cost here
 			if alt < d.dist[neighbor] {
 				d.dist[neighbor] = alt

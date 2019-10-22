@@ -67,6 +67,10 @@ func (n Node) GetNeighbors() *Neighbors {
 	return &n.neighbors
 }
 
+// GetNeighbors get the neighbors of the node
+func (n Node) GetNeighborsNodes() []*Node {
+	return n.neighbors.Get()
+}
 func (n Node) String() string {
 	return fmt.Sprintf("pos: %v, neighbors: %s ", n.pos, n.neighbors.String())
 }

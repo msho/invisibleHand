@@ -5,5 +5,5 @@ const (
 	Port = "8080"
 
 	// TestServer testing server
-	TestServer = "http://localhost:8080/" sss
+	TestServer = "http://localhost:8080/"
 )
