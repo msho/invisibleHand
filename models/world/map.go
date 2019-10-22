@@ -6,7 +6,7 @@ import (
 
 // Map is an array of nodes where the game takes place
 type Map struct {
-	arrNodes             []*Node
+	arrNodes             NodesList
 	rowsCount, colsCount int
 }
 
@@ -44,6 +44,11 @@ func (m *Map) GetNode(x int, y int) *Node {
 	return m.getNode(NodePos{x, y})
 }
 
+// GetAllNodes return all map nodes
+func (m *Map) GetAllNodes() NodesList {
+	return m.arrNodes
+}
+
 func (m *Map) initNeighbors() {
 	for _, node := range m.arrNodes {
 		x, y := node.pos.X, node.pos.Y
@@ -78,14 +83,8 @@ func (m *Map) handleNeighbor(node *Node, neighbor NodePos, numToCheck int, isRow
 	}
 }
 
-// FindPath between node1 to node2
-func (m *Map) FindPath(node1 *Node, node2 *Node) []*Node {
-	p := findPath(m.arrNodes, node1, node2)
-	return p
-}
-
-func createNodes(numOfRows int, numOfCols int) []*Node {
-	arrNodes := make([]*Node, numOfCols*numOfRows)
+func createNodes(numOfRows int, numOfCols int) NodesList {
+	arrNodes := make(NodesList, numOfCols*numOfRows)
 
 	counter := 0
 	for i := 0; i < numOfRows; i++ {

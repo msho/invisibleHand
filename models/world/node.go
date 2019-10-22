@@ -14,6 +14,18 @@ type Neighbors struct {
 	count     int
 }
 
+// NodesList are slice(dynamic array) of nodes
+type NodesList []*Node
+
+// RemoveIndexUnsorted remove item at index @index
+func (n NodesList) RemoveIndexUnsorted(index int) NodesList {
+	lenLst := len(n) - 1
+	n[index] = n[lenLst]
+	n[lenLst] = nil
+	n = n[:lenLst]
+	return n
+}
+
 // Add another node to neighbors
 func (n *Neighbors) Add(node *Node) {
 
@@ -28,7 +40,7 @@ func (n *Neighbors) Add(node *Node) {
 }
 
 // Get all the neighbors
-func (n *Neighbors) Get() []*Node {
+func (n *Neighbors) Get() NodesList {
 	allNeighbors := n.neighbors[:n.count]
 
 	return allNeighbors
@@ -65,6 +77,11 @@ func (n Node) GetPos() NodePos {
 // GetNeighbors get the neighbors of the node
 func (n Node) GetNeighbors() *Neighbors {
 	return &n.neighbors
+}
+
+// GetNeighborsNodes get the neighbors of the node
+func (n Node) GetNeighborsNodes() NodesList {
+	return n.neighbors.Get()
 }
 
 func (n Node) String() string {
