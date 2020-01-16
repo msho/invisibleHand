@@ -1,0 +1,22 @@
+<html>
+    <head>
+        {{ template "header.tmpl" .}}
+    </head>
+
+    <body>
+        <header>
+            <h1>Invisible Hand</h1>
+        </header>
+
+        <section class="main-content">
+            {{ template "content.tmpl" .}}
+        </section>
+
+        <footer>
+            <p>The end of page</p>
+            {{template "footer.tmpl" .}}
+        </footer>
+
+    </body>
+
+</html>

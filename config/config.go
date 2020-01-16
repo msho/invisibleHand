@@ -2,8 +2,8 @@ package config
 
 const (
 	// Port we are listening at
-	Port = "8080"
+	Port = "3000"
 
 	// TestServer testing server
-	TestServer = "http://localhost:8080/"
+	TestServer = "http://localhost:3000/"
 )

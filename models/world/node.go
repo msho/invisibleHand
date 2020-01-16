@@ -14,6 +14,12 @@ type Neighbors struct {
 	count     int
 }
 
+// Node reprecent a one pixel in a map
+type Node struct {
+	pos       NodePos
+	neighbors Neighbors
+}
+
 // NodesList are slice(dynamic array) of nodes
 type NodesList []*Node
 
@@ -61,12 +67,6 @@ func (n *Neighbors) String() string {
 		}
 	}
 	return str
-}
-
-// Node reprecent a one pixel in a map
-type Node struct {
-	pos       NodePos
-	neighbors Neighbors
 }
 
 // GetPos get the position of the node

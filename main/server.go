@@ -22,6 +22,7 @@ func (s *server) Start() {
 	s.gameMap = world.MakeMap(10, 10)
 
 	http.ListenAndServe(getPort(), s.router)
+
 }
 
 func main() {
