@@ -17,14 +17,13 @@ type ClientPage struct {
 }
 
 func (s *server) routes() {
-
-
 	s.router.HandleFunc("/", s.handleHi(dummies.Data))
 	
-
 	// serve static /scripts direcory
 	s.router.PathPrefix("/scripts/").Handler(http.StripPrefix("/scripts/", http.FileServer(http.Dir("./client/scripts"))))
-	
+
+	// serve static /style direcory
+	s.router.PathPrefix("/style/").Handler(http.StripPrefix("/style/", http.FileServer(http.Dir("./client/style"))))
 }
 
 func (s *server) handleHi(str string) http.HandlerFunc {
