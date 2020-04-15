@@ -13,21 +13,77 @@ div, p {
     padding: 0;
 }
 
-table#grid-container {
-    border-collapse: collapse;
-
-    max-width: 100%;
-    width: fit-content;
-    display: block;
-    overflow-x: auto;
-    box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+.hide {
+    display: none;
 }
 
-/*table#grid-container > tbody > tr { }*/
+/*********************************
+**************Grid****************
+**********************************/
+#grid-container {
+    width: 100vw;
+    overflow: auto;
+    max-height: 100vh;
+    user-select: none;
+}
 
-table#grid-container > tbody > tr > td {
-    color: rgb(20, 20, 20);
-    border: solid rgb(200, 200, 200) 1px;
-    padding: .5rem;
-    
+/* col */
+#grid-container > div {
+    display: flex; 
+    user-select: none;
+}
+
+/* cell */
+#grid-container > div > div {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 2em;
+    border-right: dotted rgb(200, 200, 200) 1px;
+    border-bottom: dashed rgb(200, 200, 200) 1px;
+    height: 2em;
+    width: 2em;
+    user-select: none;
+    position: relative;
+}
+
+/***Grid Sizes***/
+#grid-container.tiny > div > div { height: 0.5em; width: 0.5em; flex-basis: 0.5em}
+#grid-container.smaller > div > div { height: 1em; width: 1em; flex-basis: 1em }
+#grid-container.small > div > div { height: 1.5em; width: 1.5em; flex-basis: 1.5em;}
+/*div#grid-container > div > div.normal {height: 2em;width: 2em;flex-basis: 2em;}*/
+#grid-container.big > div > div { height: 2.5em;width: 2.5em; flex-basis: 2.5em;}
+#grid-container.bigger > div > div { height: 3em; width: 3em; flex-basis: 3em;}
+#grid-container.huge > div > div { height: 3.5em; width: 3.5em; flex-basis: 3.5em;}
+
+/********************************
+**************Npc****************
+*********************************/
+.npc-sign {
+    float: left;
+    font-size: 1.4em;
+    font-family: cursive;
+    opacity: 0.3;
+    background-color:rgba(200, 200, 200, 0.5);
+    font-style: italic;
+    position: absolute;
+}
+
+#grid-container.tiny .npc-sign {font-size: 0.8em; opacity: 0.7;} 
+#grid-container.smaller .npc-sign {font-size: 1em;opacity: 0.5;} 
+#grid-container.small .npc-sign {font-size: 1.2em;} 
+#grid-container.big .npc-sign {font-size: 1.6em;} 
+#grid-container.bigger .npc-sign {font-size: 1.8em;} 
+#grid-container.huge .npc-sign {font-size: 2em;}
+
+
+/*********************************
+**************Resources***********
+**********************************/
+
+.res_wood {
+    background-color: saddlebrown !important;
+}
+
+.res_iron {
+    background-color: slategray !important;
 }

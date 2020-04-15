@@ -4,12 +4,11 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-	
 
 	"invisiblehand/dummies"
-	"invisiblehand/path"
 )
 
+//ClientPage holds client data
 type ClientPage struct {
 	PageTitle  string
 	Body       string
@@ -18,7 +17,7 @@ type ClientPage struct {
 
 func (s *server) routes() {
 	s.router.HandleFunc("/", s.handleHi(dummies.Data))
-	
+
 	// serve static /scripts direcory
 	s.router.PathPrefix("/scripts/").Handler(http.StripPrefix("/scripts/", http.FileServer(http.Dir("./client/scripts"))))
 
@@ -38,13 +37,13 @@ func (s *server) handleHi(str string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 
-		node1 := s.gameMap.GetNode(1, 0)
+		/*node1 := s.gameMap.GetNode(1, 0)
 		node2 := s.gameMap.GetNode(2, 1)
-		greedy := path.Greedy{}
+		greedy := path.Greedy{}*/
 
 		data := &ClientPage{
 			PageTitle:  "ok",
-			Body:       fmt.Sprintf("%v", greedy.FindPath(s.gameMap, node1, node2)),
+			Body:       fmt.Sprintf("" /*"%v", greedy.FindPath(s.gameMap, node1, node2)*/),
 			ScriptData: template.JS(str),
 		}
 
@@ -53,4 +52,5 @@ func (s *server) handleHi(str string) http.HandlerFunc {
 			fmt.Print(err, tplMap)
 		}
 	}
+
 }
