@@ -6,6 +6,8 @@ body {
     margin: 0; 
     padding: 0;
     max-width: 100%;
+    overflow: hidden;
+    touch-action: manipulation;
 }
 
 div, p {
@@ -41,19 +43,18 @@ div, p {
     border-right: dotted rgb(200, 200, 200) 1px;
     border-bottom: dashed rgb(200, 200, 200) 1px;
     height: 2em;
-    width: 2em;
     user-select: none;
     position: relative;
 }
 
 /***Grid Sizes***/
-#grid-container.tiny > div > div { height: 0.5em; width: 0.5em; flex-basis: 0.5em}
-#grid-container.smaller > div > div { height: 1em; width: 1em; flex-basis: 1em }
-#grid-container.small > div > div { height: 1.5em; width: 1.5em; flex-basis: 1.5em;}
+#grid-container.tiny > div > div { height: 0.5em; flex-basis: 0.5em}
+#grid-container.smaller > div > div { height: 1em; flex-basis: 1em }
+#grid-container.small > div > div { height: 1.5em; flex-basis: 1.5em;}
 /*div#grid-container > div > div.normal {height: 2em;width: 2em;flex-basis: 2em;}*/
-#grid-container.big > div > div { height: 2.5em;width: 2.5em; flex-basis: 2.5em;}
-#grid-container.bigger > div > div { height: 3em; width: 3em; flex-basis: 3em;}
-#grid-container.huge > div > div { height: 3.5em; width: 3.5em; flex-basis: 3.5em;}
+#grid-container.big > div > div { height: 2.5em; flex-basis: 2.5em;}
+#grid-container.bigger > div > div { height: 3em; flex-basis: 3em;}
+#grid-container.huge > div > div { height: 4.5em; flex-basis: 4.5em;}
 
 /********************************
 **************Npc****************
@@ -66,6 +67,7 @@ div, p {
     background-color:rgba(200, 200, 200, 0.5);
     font-style: italic;
     position: absolute;
+    z-index: 2;
 }
 
 #grid-container.tiny .npc-sign {font-size: 0.8em; opacity: 0.7;} 

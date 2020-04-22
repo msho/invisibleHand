@@ -32,7 +32,7 @@ func MakeMap(numOfRows int, numOfCols int) Map {
 func (m *Map) getNode(pos NodePos) *Node {
 	nodePos := m.rowsCount*pos.X + pos.Y
 	if len(m.arrNodes) <= nodePos || nodePos < 0 {
-		fmt.Println(fmt.Errorf("node not found"))
+		//fmt.Println(fmt.Errorf("node not found"))
 		return nil
 	}
 
@@ -47,6 +47,16 @@ func (m *Map) GetNode(x int, y int) *Node {
 // GetAllNodes return all map nodes
 func (m *Map) GetAllNodes() NodesList {
 	return m.arrNodes
+}
+
+// GetMapSize return return the rows and the columns count.
+func (m *Map) GetMapSize() (rowsCount int, colsCount int) {
+	return m.rowsCount, m.colsCount
+}
+
+// ToJSON return return the rows and the columns count.
+func (m *Map) ToJSON() string {
+	return fmt.Sprintf("{map: {width: %d, height: %d}, npc: {cities:[],villages:[]}, resources: []}", m.rowsCount, m.colsCount)
 }
 
 func (m *Map) initNeighbors() {
@@ -72,7 +82,6 @@ func (m *Map) initNeighbors() {
 
 // handleNeighbor decide if @neighbor is realy a neighbor to @node and add it to the node if so
 func (m *Map) handleNeighbor(node *Node, neighbor NodePos, numToCheck int, isRow bool) {
-
 	if numToCheck >= 0 && (isRow && numToCheck < m.rowsCount) {
 		// check if bigger then 0, and smaller then rowsCount (if row)
 		node.neighbors.Add(m.getNode(neighbor))

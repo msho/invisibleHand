@@ -17,9 +17,8 @@ type server struct {
 }
 
 func (s *server) Start() {
-	s.routes()
 
-	s.gameMap = world.MakeMap(10, 10)
+	s.routes()
 
 	http.ListenAndServe(getPort(), s.router)
 
@@ -30,6 +29,7 @@ func main() {
 		router: mux.NewRouter(),
 	}
 
+	gameServer.gameMap = world.MakeMap(config.MapWidth, config.MapHight)
 	gameServer.Start()
 }
 

@@ -9,7 +9,9 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "c:\\Dev\\rep\\GoProj\\src\\invisiblehand\\main\\server.go",
+            //"program": "c:\\Dev\\rep\\GoProj\\src\\invisiblehand\\main\\server.go",
+            "program": "C:\\Users\\RS250930\\go\\src\\invisiblehand\\main\\server.go",
+            //"program": "${workspaceFolder}\\main\\server.go",
             "env": {},
             "args": []
         }

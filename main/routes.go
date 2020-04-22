@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-
-	"invisiblehand/dummies"
 )
 
 //ClientPage holds client data
@@ -16,7 +14,8 @@ type ClientPage struct {
 }
 
 func (s *server) routes() {
-	s.router.HandleFunc("/", s.handleHi(dummies.Data))
+	// serve get '/' request
+	s.router.HandleFunc("/", s.handleHi(s.gameMap.ToJSON()))
 
 	// serve static /scripts direcory
 	s.router.PathPrefix("/scripts/").Handler(http.StripPrefix("/scripts/", http.FileServer(http.Dir("./client/scripts"))))
@@ -26,12 +25,13 @@ func (s *server) routes() {
 }
 
 func (s *server) handleHi(str string) http.HandlerFunc {
-
+	// For debug only... TODO: remove to change to const staticPath = "
+	const staticPath = "c:/Users/RS250930/go/src/invisiblehand"
 	tplMap := template.Must(
-		template.New("master.tmpl").ParseFiles("client/pages/common/master.tmpl",
-			"client/pages/common/header.tmpl",
-			"client/pages/common/footer.tmpl",
-			"client/pages/map/content.tmpl",
+		template.New("master.tmpl").ParseFiles(staticPath+"/client/pages/common/master.tmpl",
+			staticPath+"/client/pages/common/header.tmpl",
+			staticPath+"/client/pages/common/footer.tmpl",
+			staticPath+"/client/pages/map/content.tmpl",
 		))
 
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -44,7 +44,7 @@ func (s *server) handleHi(str string) http.HandlerFunc {
 		data := &ClientPage{
 			PageTitle:  "ok",
 			Body:       fmt.Sprintf("" /*"%v", greedy.FindPath(s.gameMap, node1, node2)*/),
-			ScriptData: template.JS(str),
+			ScriptData: template.JS(fmt.Sprintf("const mapData = %s", str)),
 		}
 
 		err := tplMap.ExecuteTemplate(w, "master.tmpl", data)

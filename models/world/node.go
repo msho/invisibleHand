@@ -40,6 +40,11 @@ func (n *Neighbors) Add(node *Node) {
 		return
 	}
 
+	if node == nil {
+		// neighbor not exist :(
+		return
+	}
+
 	n.neighbors[n.count] = node
 
 	n.count = n.count + 1
